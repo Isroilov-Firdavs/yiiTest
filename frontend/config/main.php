@@ -12,6 +12,13 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'assetManager' => [
+        'bundles' => [
+            'kartik\form\ActiveFormAsset' => [
+                'bsDependencyEnabled' => false // do not load bootstrap assets for a specific asset bundle
+            ],
+        ],
+    ],
         'request' => [
             'baseUrl'=>'',
             'csrfParam' => '_csrf-frontend',
@@ -52,5 +59,16 @@ return [
         ],
         
     ],
-    'params' => $params,
+    'modules' => [
+
+        'gridview' => ['class' => 'kartik\grid\Module'],
+        'gridview' => [
+        'class' => 'kartik\grid\Module',
+        // other module settings
+        ]
+    ],
+    'params' => [
+        'icon-framework' => \kartik\icons\Icon::FAS,  // Font Awesome Icon framework
+        'bsVersion' => '4.x',
+    ],
 ];

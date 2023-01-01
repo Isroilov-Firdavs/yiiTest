@@ -2,6 +2,19 @@ main > .container, main > .container-fluid
 {
     padding: 70px 15px 20px;
 }
+.card-border{
+    box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.2)
+}
+
+.card-admin{
+    background-color: red;
+}
+.card-admin h1{
+    color: white;
+}
+
+
+
 
 .footer {
     background-color: #f5f5f5;
@@ -100,4 +113,9 @@ a.desc:after {
 .breadcrumb-item > a
 {
     text-decoration: none;
+}
+
+
+.fool-img img {
+    width: 100px;
 }

@@ -1,50 +1,52 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\controllers;
 
-use backend\models\Maxsulot;
-use backend\models\MaxsulotSerch;
+use frontend\models\Guruh;
+use frontend\models\GuruhSerch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
-use yii\helpers\Url;
-use yii\base\Security;
-
-
-
+use yii\filters\AccessControl;
 
 /**
- * MaxsulotController implements the CRUD actions for Maxsulot model.
+ * GuruhController implements the CRUD actions for Guruh model.
  */
-class MaxsulotController extends Controller
+class GuruhController extends Controller
 {
     /**
      * @inheritDoc
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class'=> AccessControl::class,
+                // 'only'=> ['create', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        // 'actions' => ['create', 'delete'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?'],
                     ],
                 ],
-            ]
-        );
+            ],
+        ];
     }
 
     /**
-     * Lists all Maxsulot models.
+     * Lists all Guruh models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new MaxsulotSerch();
+        $searchModel = new GuruhSerch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -54,7 +56,7 @@ class MaxsulotController extends Controller
     }
 
     /**
-     * Displays a single Maxsulot model.
+     * Displays a single Guruh model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -67,32 +69,16 @@ class MaxsulotController extends Controller
     }
 
     /**
-     * Creates a new Maxsulot model.
+     * Creates a new Guruh model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $a = new Security();
-        $model = new Maxsulot();
-        $t = time();
-
+        $model = new Guruh();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                if ($model->validate()) {
-
-                $model->foto = UploadedFile::getInstance($model, 'foto');
-                $model->foto->saveAs(
-                    Url::to('@frontend/web/images/').$t.".".$model->foto->extension
-                    // Url::to('@frontend/web/images/').$a->generateRandomString(20).".".$model->foto->extension
-                );
-                // form inputs are valid, do something here
-                $model->foto = $t.".".$model->foto->extension;
-                $model->save();
-                return $this->redirect('/admin/maxsulot');
-
-            }
+            if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -103,8 +89,9 @@ class MaxsulotController extends Controller
             'model' => $model,
         ]);
     }
+
     /**
-     * Updates an existing Maxsulot model.
+     * Updates an existing Guruh model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -124,7 +111,7 @@ class MaxsulotController extends Controller
     }
 
     /**
-     * Deletes an existing Maxsulot model.
+     * Deletes an existing Guruh model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -138,15 +125,15 @@ class MaxsulotController extends Controller
     }
 
     /**
-     * Finds the Maxsulot model based on its primary key value.
+     * Finds the Guruh model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Maxsulot the loaded model
+     * @return Guruh the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Maxsulot::findOne(['id' => $id])) !== null) {
+        if (($model = Guruh::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

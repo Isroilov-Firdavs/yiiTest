@@ -9,6 +9,7 @@ use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\UploadedFile;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -18,6 +19,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Tovar;
 use frontend\models\Maxsulot;
+
+
 
 /**
  * Site controller
@@ -83,6 +86,113 @@ class SiteController extends Controller
     //     echo 'ok';
     // }
 
+    public function actionTest()
+    {
+        $db = Tovar::find();
+
+        $sahifa = new Pagination(
+            [
+                'totalCount' => $db -> count(),
+                'defaultPageSize' => 5,
+                // 'pageParam' => 'sahifa',
+        ]);
+
+
+        $test = $db -> offset($sahifa -> offset) ->limit($sahifa -> limit) -> all();
+        return $this->render('test', ['t'=> $test, 'sahifa' => $sahifa]);
+    }
+
+
+    public function actionTovar()
+    {
+        $model = new Tovar();
+        $t =  date("d.m.Y");
+
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->vaqti = $t;
+                $model->save();
+                // form inputs are valid, do something here
+                return $this->redirect('/site/test');
+            }
+        }
+
+        return $this->render('tovar', [
+            'model' => $model,
+        ]);
+    }
+
+
+    public function actionView($id)
+    {
+        if (Yii::$app->user->can('ochirish'))
+            {
+                $model = Tovar::findOne($id);
+                return $this->render('view', ['view' => $model]);
+            }
+        else
+        {
+            return $this->redirect(['site/index']);
+        }
+
+
+    }
+
+
+    public function actionEdit($id)
+    {
+        if (Yii::$app->user->can('ochirish'))
+            {
+                $edit = Tovar::findOne($id);
+                    if ($edit -> load(Yii::$app->request->post()))
+                    {
+                        $edit->save();
+                        return $this->redirect(['site/test']);
+                    }
+                    return $this->render('edit', ['edit'=>$edit]);
+
+            }
+        else
+            {
+                return $this->redirect(['site/index']);
+            }
+
+    }
+
+    public function actionDelete($id)
+    {
+        if(Yii::$app->user->can('ochirish'))
+        {
+                $model = Tovar::findOne($id);
+                $model->delete();
+                return $this->redirect(['site/test']);
+        }
+        else
+        {
+            return $this->redirect(['site/index']);
+        }
+    }
+
+
+
+
+    public function actionCategory()
+    {
+        $model = new \frontend\models\Category();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->save();
+                // form inputs are valid, do something here
+                return$this->redirect('/');;
+            }
+        }
+
+        return $this->render('category', [
+            'model' => $model,
+        ]);
+    }
 
 
     public function actionForm()

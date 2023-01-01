@@ -35,10 +35,10 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        // ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Test', 'url' => ['/site/test']],
+        ['label' => 'Add', 'url' => ['/site/tovar']],
+        ['label' => 'Category', 'url' => ['/site/category']],
         // ['label' => 'Serch', 'url' => ['/site/form']],
-        ['label' => 'Users', 'url' => ['/user']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
@@ -65,6 +65,28 @@ AppAsset::register($this);
 
 <main role="main" class="flex-shrink-0">
     <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-3">
+                <ul class="nav">
+                  <li class="nav-item">
+                    <a href="<?=\yii\helpers\Url::to(['/monitoring']);?>" class="nav-link">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?=\yii\helpers\Url::to(['/monitoring/admin']);?>" class="nav-link">Admin</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?=\yii\helpers\Url::to(['/monitoring/test']);?>" class="nav-link">Test</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?=\yii\helpers\Url::to(['/guruh']);?>" class="nav-link">Guruh</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?=\yii\helpers\Url::to(['/admin']);?>" class="nav-link">Backend</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

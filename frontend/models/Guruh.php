@@ -5,19 +5,19 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "guruh".
  *
  * @property int $id
- * @property string $nomi
+ * @property int|null $nomi
  */
-class Category extends \yii\db\ActiveRecord
+class Guruh extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'category';
+        return 'guruh';
     }
 
     /**
@@ -26,8 +26,8 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nomi'], 'required'],
-            [['nomi'], 'string', 'max' => 80],
+            [['nomi'], 'default', 'value' => null],
+            [['nomi'], 'integer'],
         ];
     }
 
@@ -41,5 +41,4 @@ class Category extends \yii\db\ActiveRecord
             'nomi' => 'Nomi',
         ];
     }
-
 }

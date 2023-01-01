@@ -9,19 +9,21 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-error">
+    <div class="card card-border">
+        <div class="card-body">
+    <h2><?= Html::encode($this->title) ?></h1>
 
     <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+        Страница не найдена.
     </div>
 
     <p>
-        The above error occurred while the Web server was processing your request.
+        Если вы считаете, что это ошибка сервера, свяжитесь с нами. Спасибо.
     </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
+
+        </div>
+    </div>
 
 </div>
