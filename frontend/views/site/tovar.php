@@ -13,6 +13,7 @@ use kartik\daterange\DateRangePicker;
 use frontend\models\Category;
 use kartik\select2\Select2;
 
+$this->title = 'Add tovar';
 
 
 /** @var yii\web\View $this */

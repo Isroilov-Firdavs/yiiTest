@@ -68,7 +68,7 @@ $this->title = 'My Yii Application';
 
 <?php
 Modal::begin([
-    'title' => 'Hello world',
+    'title' => 'Title',
     'toggleButton' => ['label' => 'click me'],
     'id' => 'myModal',
 ]);

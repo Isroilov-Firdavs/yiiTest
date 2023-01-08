@@ -6,6 +6,8 @@ use yii\bootstrap5\ActiveForm;
 /** @var yii\web\View $this */
 /** @var frontend\models\Category $model */
 /** @var ActiveForm $form */
+$this->title = 'Add Category';
+
 ?>
 <div class="site-category">
     <div class="row">

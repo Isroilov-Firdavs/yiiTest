@@ -14,21 +14,22 @@ return [
     'modules' => [],
     'components' => [
         'request' => [
-            'baseUrl'=>'/admin',
-            'csrfParam' => '_csrf-backend',
+            'baseUrl'=>'/api',
+            'csrfParam' => '_csrf-restapi',
+                'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'user' => [
 			'class' => 'yii\web\User',
 			'identityClass' => 'andrewdanilov\adminpanel\models\User',
 			'accessChecker' => 'andrewdanilov\adminpanel\AccessChecker',
 			'enableAutoLogin' => true,
+            'enableSession' => false,
+            'loginUrl' => null,
 			'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
 			'loginUrl' => ['user/login'],
 		],
-        'session' => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
-        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -38,24 +39,22 @@ return [
                 ],
             ],
         ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
-        ],
-        
         'urlManager' => [
-            'scriptUrl'=>'/backend/index.php',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+        'enablePrettyUrl' => true,
+        'enableStrictParsing' => true,
+        'showScriptName' => false,
+        'rules' => [
+            [
+                'class' => 'yii\rest\UrlRule',
+                'controller' =>
+                    [
+                        'user',
+                        'guruh',
+                    ],
             ],
         ],
-        
     ],
-    'controllerMap' => [
-		'user' => [
-			'class' => 'andrewdanilov\adminpanel\controllers\UserController',
-			'viewPath' => '@backend/someotherlocation/views/user', // optional, custom UserController views location
-		],
-	],
+
+    ],
     'params' => $params,
 ];
