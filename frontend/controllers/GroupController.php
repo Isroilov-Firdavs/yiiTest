@@ -2,17 +2,18 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Guruh;
-use frontend\models\GuruhSerch;
+use frontend\models\Group;
+use frontend\models\GroupSerch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+
 /**
- * GuruhController implements the CRUD actions for Guruh model.
+ * GroupController implements the CRUD actions for Group model.
  */
-class GuruhController extends Controller
+class GroupController extends Controller
 {
     /**
      * @inheritDoc
@@ -40,13 +41,13 @@ class GuruhController extends Controller
     }
 
     /**
-     * Lists all Guruh models.
+     * Lists all Group models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new GuruhSerch();
+        $searchModel = new GroupSerch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +57,7 @@ class GuruhController extends Controller
     }
 
     /**
-     * Displays a single Guruh model.
+     * Displays a single Group model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,13 +70,13 @@ class GuruhController extends Controller
     }
 
     /**
-     * Creates a new Guruh model.
+     * Creates a new Group model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Guruh();
+        $model = new Group();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -91,7 +92,7 @@ class GuruhController extends Controller
     }
 
     /**
-     * Updates an existing Guruh model.
+     * Updates an existing Group model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -111,7 +112,7 @@ class GuruhController extends Controller
     }
 
     /**
-     * Deletes an existing Guruh model.
+     * Deletes an existing Group model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -125,15 +126,15 @@ class GuruhController extends Controller
     }
 
     /**
-     * Finds the Guruh model based on its primary key value.
+     * Finds the Group model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Guruh the loaded model
+     * @return Group the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Guruh::findOne(['id' => $id])) !== null) {
+        if (($model = Group::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

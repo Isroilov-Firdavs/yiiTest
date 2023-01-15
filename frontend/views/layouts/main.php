@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -35,6 +36,8 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
+        ['label' => 'Car', 'url' => ['/site/car']],
+        ['label' => 'Users', 'url' => ['/site/users']],
         ['label' => 'Test', 'url' => ['/site/test']],
         ['label' => 'Add', 'url' => ['/site/tovar']],
         ['label' => 'Category', 'url' => ['/site/category']],
@@ -69,23 +72,41 @@ AppAsset::register($this);
             <div class="col-lg-6 offset-3">
                 <ul class="nav">
                   <li class="nav-item">
-                    <a href="<?=\yii\helpers\Url::to(['/monitoring']);?>" class="nav-link">Home</a>
+                    <a href="<?=Url::to(['/monitoring']);?>" class="nav-link"><?=Yii::t('app', 'home');?></a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?=\yii\helpers\Url::to(['/monitoring/admin']);?>" class="nav-link">Admin</a>
+                    <a href="<?=Url::to(['/monitoring/admin']);?>" class="nav-link"><?=Yii::t('app', 'admin');?></a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?=\yii\helpers\Url::to(['/monitoring/test']);?>" class="nav-link">Test</a>
+                    <a href="<?=Url::to(['/monitoring/test']);?>" class="nav-link"><?=Yii::t('app', 'test');?></a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?=\yii\helpers\Url::to(['/guruh']);?>" class="nav-link">Guruh</a>
+                    <a href="<?=Url::to(['/group']);?>" class="nav-link"><?=Yii::t('app', 'group');?></a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?=\yii\helpers\Url::to(['/admin']);?>" class="nav-link">Backend</a>
+                    <a href="<?=Url::to(['/language']);?>" class="nav-link"><?=Yii::t('app', 'language');?></a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?=Url::to(['/admin']);?>" class="nav-link">Backend</a>
                   </li>
                 </ul>
             </div>
         </div>
+        <div class="text-center my-2">
+        <h6>Language <span class="badge bg-secondary"><?=Yii::$app->session->get('lang')?></span></h6>
+        </div>
+        <div class="text-center my-2">
+            <a href="<?=Url::to(['/monitoring/language', 'lang'=>'uz']);?>">
+                <span class="badge bg-success"><?=Yii::t('app', 'uz');?></span>
+            </a>
+            <a href="<?=Url::to(['/monitoring/language', 'lang'=>'ru']);?>">
+                <span class="badge bg-danger"><?=Yii::t('app', 'ru');?></span>
+            </a>
+            <a href="<?=Url::to(['/monitoring/language', 'lang'=>'en']);?>">
+                <span class="badge bg-primary"><?=Yii::t('app', 'en');?></span>
+            </a>
+        </div>
+
 
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

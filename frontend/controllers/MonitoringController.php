@@ -7,6 +7,7 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use frontend\models\User;
 use frontend\models\Tovar;
+use frontend\models\Language;
 
 
 
@@ -16,7 +17,20 @@ class MonitoringController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        if ( !(Yii::$app->session->has('lang')) )
+        {
+            Yii::$app->session->set('lang', 'ru');
+        }
+        $model = Language::find()->all();
+        return $this->render('index', ['lang' => $model]);
+    }
+
+    public function actionLanguage($lang)
+    {
+        Yii::$app->session->set('lang', $lang);
+        Yii::$app->language = $lang;
+        return $this->redirect(Yii::$app->request->referrer);
+        // return $this->redirect(['/monitoring']);
     }
 
 

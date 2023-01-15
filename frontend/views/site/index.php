@@ -8,6 +8,7 @@ use kartik\daterange\DateRangePicker;
 
 $this->title = 'My Yii Application';
 ?>
+<span class="badge bg-secondary"><?=Yii::t('app', 'mual');?></span>
 <div class="row">
     <div class="col-lg-6 offset-lg-3">
         <div class="card">
@@ -25,10 +26,3 @@ $this->title = 'My Yii Application';
         </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-6 offset-3">
-        <div class=""></div>
-    </div>
-</div>
-

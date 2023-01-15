@@ -1,16 +1,16 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap5\Html;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Guruh $model */
+/** @var frontend\models\Language $model */
 
-$this->title = 'Update Guruh: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Guruhs', 'url' => ['index']];
+$this->title = 'Update Language: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Languages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="guruh-update">
+<div class="language-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

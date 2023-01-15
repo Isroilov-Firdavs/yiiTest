@@ -3,13 +3,16 @@ $this->title = 'My Yii Application';
 
 ?>
 
-<h1>Home</h1>
-
-<h1>Index.php</h1>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa. Debitis totam quod molestiae vero, maxime ea, illum a sapiente odio rem pariatur adipisci nesciunt recusandae! Voluptates consequuntur, accusamus mollitia!</p>
-
 
 <?php
+	foreach( $lang as $model ){
+		?>
+		<span class="badge text-bg-danger"><?=$model['nomi_'.Yii::$app->session->get('lang')]?></span><br>
+		<?php
+	}
+
+
+
 
 	if (\Yii::$app->user->can('ochirish'))
 	{

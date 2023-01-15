@@ -8,10 +8,23 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    // 'language' => 'ru',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/languages',
+                    'fileMap' => [
+                        'app'       => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
         'assetManager' => [
         'bundles' => [
             'kartik\form\ActiveFormAsset' => [
@@ -68,7 +81,12 @@ return [
         ]
     ],
     'params' => [
+        $params,
         'icon-framework' => \kartik\icons\Icon::FAS,  // Font Awesome Icon framework
         'bsVersion' => '4.x',
     ],
+    'as beforeRequest' => [
+        'class' => 'frontend\components\LengComponent'
+    ],
+    // 'params' =>
 ];

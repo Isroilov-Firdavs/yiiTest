@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int|null $nomi
  */
-class Guruh extends \yii\db\ActiveRecord
+class Group extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

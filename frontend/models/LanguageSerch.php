@@ -4,12 +4,12 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Guruh;
+use frontend\models\Language;
 
 /**
- * GuruhSerch represents the model behind the search form of `frontend\models\Guruh`.
+ * LanguageSerch represents the model behind the search form of `frontend\models\Language`.
  */
-class GuruhSerch extends Guruh
+class LanguageSerch extends Language
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class GuruhSerch extends Guruh
     public function rules()
     {
         return [
-            [['id', 'nomi'], 'integer'],
+            [['id'], 'integer'],
+            [['nomi_uz', 'nomi_ru', 'nomi_en'], 'safe'],
         ];
     }
 
@@ -39,7 +40,7 @@ class GuruhSerch extends Guruh
      */
     public function search($params)
     {
-        $query = Guruh::find();
+        $query = Language::find();
 
         // add conditions that should always apply here
 
@@ -58,8 +59,11 @@ class GuruhSerch extends Guruh
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'nomi' => $this->nomi,
         ]);
+
+        $query->andFilterWhere(['ilike', 'nomi_uz', $this->nomi_uz])
+            ->andFilterWhere(['ilike', 'nomi_ru', $this->nomi_ru])
+            ->andFilterWhere(['ilike', 'nomi_en', $this->nomi_en]);
 
         return $dataProvider;
     }

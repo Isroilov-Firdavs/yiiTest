@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use yii\bootstrap5\ActiveForm;
+use yii\helpers\ArrayHelper;
 use kartik\icons\Icon;
 use kartik\editors\Summernote;
 

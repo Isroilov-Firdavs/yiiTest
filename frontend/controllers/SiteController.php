@@ -19,6 +19,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Tovar;
 use frontend\models\Maxsulot;
+use frontend\models\Car;
+use frontend\models\Users;
 
 
 
@@ -85,6 +87,43 @@ class SiteController extends Controller
     //     $user->save();
     //     echo 'ok';
     // }
+
+
+    public function actionCar()
+    {
+        $db = Car::find();
+
+        $sahifa = new Pagination(
+            [
+                'totalCount' => $db -> count(),
+                'defaultPageSize' => 20,
+                // 'pageParam' => 'sahifa',
+        ]);
+
+
+        $test = $db -> offset($sahifa -> offset) ->limit($sahifa -> limit) -> all();
+        return $this->render('car', ['t'=> $test, 'sahifa' => $sahifa]);
+    }
+
+    
+
+    public function actionUsers()
+    {
+        $db = Users::find();
+
+        $sahifa = new Pagination(
+            [
+                'totalCount' => $db -> count(),
+                'defaultPageSize' => 20,
+                // 'pageParam' => 'sahifa',
+        ]);
+
+
+        $test = $db -> offset($sahifa -> offset) ->limit($sahifa -> limit) -> all();
+        return $this->render('users', ['t'=> $test, 'sahifa' => $sahifa]);
+    }
+
+
 
     public function actionTest()
     {

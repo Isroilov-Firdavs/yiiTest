@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3b1acc6816377e25f27618b0372db86",
+    "content-hash": "efd9f17d36ae9cca1682f385f1cffe62",
     "packages": [
         {
             "name": "andrewdanilov/yii2-admin-panel",

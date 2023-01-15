@@ -68,12 +68,23 @@ $this->title = 'My Yii Application';
 
 <?php
 Modal::begin([
-    'title' => 'Title',
-    'toggleButton' => ['label' => 'click me'],
+    'title' => "Kategoriya qo'shish",
+    'toggleButton' => ['label' => "Qo'shish", 'class' => 'btn btn-success'],
     'id' => 'myModal',
 ]);
+?>
+<div class="card">
+	<div class="card-body">
+		<div class="row p-1">
+			<label for="nomi">Kategoriya nomi</label>
+			<?foreach ($t as $tovar):?>
+		  	<input type="text" class="form-control mt-1" value="<?=$tovar['nomi']?>">
+		  	<?endforeach;?>
+			<input type="submit" id="btn-warning" class="btn btn-success mt-3">
+		</div>
+	</div>
+</div>
 
-echo "<div id='content'>Content</div>";
-
+<?php
 Modal::end();
 ?>

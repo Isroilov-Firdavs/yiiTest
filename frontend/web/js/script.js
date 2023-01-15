@@ -4,6 +4,10 @@
 // 	$('#myModal').modal('show');
 // 	send(url);
 // })
+//
+$("#btn-warning").on("click", function(event){
+	event.preventDefault();
+})
 
 // function send( url, formData = null ){
 // 	$.ajax({

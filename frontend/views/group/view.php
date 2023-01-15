@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Guruh $model */
+/** @var frontend\models\Group $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Guruhs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Groups', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="guruh-view">
+<div class="group-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
