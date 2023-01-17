@@ -6,6 +6,7 @@ $params = array_merge(
     require __DIR__ . '/params-local.php'
 );
 
+
 return [
     'id' => 'app-frontend',
     // 'language' => 'ru',
@@ -80,11 +81,11 @@ return [
         // other module settings
         ]
     ],
-    'params' => [
-        $params,
-        'icon-framework' => \kartik\icons\Icon::FAS,  // Font Awesome Icon framework
-        'bsVersion' => '4.x',
-    ],
+    // 'params' => [
+    //     'icon-framework' => \kartik\icons\Icon::FAS,  // Font Awesome Icon framework
+    //     'bsVersion' => '4.x',
+    // ],
+    'params' => $params,
     'as beforeRequest' => [
         'class' => 'frontend\components\LengComponent'
     ],

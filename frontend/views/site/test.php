@@ -64,8 +64,6 @@ $this->title = 'My Yii Application';
 </div>
 
 
-
-
 <?php
 Modal::begin([
     'title' => "Kategoriya qo'shish",
